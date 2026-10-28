@@ -1,0 +1,10 @@
+[Unit]
+Description=Ejecuta el Cazador de Empleos 3 veces al dia (8am, 12pm, 5pm), Lun-Vie
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 08,12,17:00:00
+Persistent=true
+RandomizedDelaySec=5min
+
+[Install]
+WantedBy=timers.target

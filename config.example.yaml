@@ -1,0 +1,104 @@
+# ==============================================================================
+# CONFIGURACIÓN DE BÚSQUEDA Y FILTROS - CAZADOR DE EMPLEOS
+# ==============================================================================
+# Copia este archivo como 'config.yaml' y personalízalo con tu perfil profesional.
+
+profile:
+  # Palabras clave de tu especialidad (coincidencias requeridas en el título o descripción)
+  # Puedes cambiarlas según tu área (Desarrollo, Datos, Marketing, Diseño, etc.)
+  keywords:
+    - "meta ads"
+    - "google ads"
+    - "social media"
+    - "looker studio"
+    - "data analyst"
+    - "python"
+    # Si buscas exclusivamente freelance, incluye también términos combinados:
+    - "freelance meta ads"
+    - "media buyer freelance"
+    - "trafficker freelance"
+
+  # Palabras a excluir (si alguna aparece en la vacante, se descarta automáticamente)
+  exclude:
+    - "call center"
+    - "puerta a puerta"
+    - "ventas en frío"
+    - "community manager"
+
+filters:
+  # Puntuación mínima de coincidencia (1 punto por cada keyword que coincida)
+  min_score: 2
+
+  # Priorizar ofertas 100% remotas al inicio de las notificaciones
+  prefer_remote: true
+
+  # Si es TRUE: Solo notifica proyectos freelance, por horas, part-time o por entregables.
+  # Descarta empleos corporativos estándar a tiempo completo (40-48h semanales en nómina).
+  # Si es FALSE: Acepta cualquier tipo de contrato (tiempo completo, freelance, etc.).
+  only_freelance_or_part_time: false
+
+  # Si la vacante es presencial o híbrida, solo se acepta si está en estas ciudades:
+  allowed_locations_presencial_hibrido:
+    - "bogota"
+    - "bogotá"
+    # Añade tu ciudad aquí si buscas también opciones presenciales o híbridas
+
+sources:
+  # Get on Board (Especializado en tecnología, producto, marketing y datos en LATAM)
+  getonbrd:
+    enabled: true
+    base_url: "https://www.getonbrd.com"
+    categories:
+      - marketing-digital
+      - data-science-analytics
+      - programacion
+      - diseno-ux
+
+  # LinkedIn Jobs (Buscador público sin necesidad de iniciar sesión)
+  linkedin:
+    enabled: true
+    location: "Latin America" # Puedes cambiarlo a "Colombia", "Mexico", "Remote", etc.
+    results_wanted_per_keyword: 15
+    delay_between_searches_seconds: 10 # Pausa preventiva para evitar bloqueos
+    hours_old: null # null para todo, o un número (ej. 72) para últimas 72 horas
+
+  # Indeed (Bolsa de empleo general)
+  indeed:
+    enabled: true
+    location: "Colombia"
+    country: "colombia"
+    results_wanted_per_keyword: 10
+    delay_between_searches_seconds: 5
+    hours_old: null
+
+  # CompuTrabajo (Portal local para Colombia u otros países de LATAM)
+  computrabajo:
+    enabled: true
+    base_url: "https://co.computrabajo.com"
+    max_results_per_keyword: 10
+    delay_between_requests_seconds: 2
+
+  # Canales públicos de Telegram (Canales comunitarios de empleo remoto en LATAM)
+  telegram_channels:
+    enabled: true
+    channels:
+      - "vacantesremotasempleoverse"
+    max_posts_per_channel: 25
+    delay_between_requests_seconds: 2
+
+  # Torre AI (Requiere cookie de sesión web en cookie.txt)
+  torre:
+    enabled: false
+    cookie_path: "~/.config/torre/cookie.txt"
+    max_results_per_keyword: 10
+    delay_between_requests_seconds: 2
+
+output:
+  # Ruta donde se guarda el historial de vacantes ya notificadas para no repetir
+  seen_path: "state/seen.json"
+
+http:
+  # Identificador para las peticiones web respetuosas
+  user_agent: "cazador-empleos-personal/1.0 (contacto: tu_correo@ejemplo.com)"
+  timeout_seconds: 15
+  delay_between_requests_seconds: 2

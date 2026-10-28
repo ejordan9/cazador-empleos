@@ -1,0 +1,23 @@
+# Python
+.venv/
+env/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Archivos personales y secretos (NO subir al repositorio)
+config.yaml
+.env
+credentials.env
+*.cookie.txt
+
+# Historial local de ofertas ya notificadas
+state/
+*.log
+
+# Sistema e IDEs
+.DS_Store
+.idea/
+.vscode/
+*.swp

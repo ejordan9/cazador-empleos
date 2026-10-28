@@ -1,0 +1,9 @@
+[Unit]
+Description=Cazador de Empleos Multiplataforma -> Telegram
+After=network-online.target
+
+[Service]
+Type=oneshot
+# Reemplaza '/ruta/a/tu/cazador-empleos' con la ruta absoluta de tu carpeta
+WorkingDirectory=/ruta/a/tu/cazador-empleos
+ExecStart=/ruta/a/tu/cazador-empleos/env/bin/python run.py
